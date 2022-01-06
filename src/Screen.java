@@ -5,25 +5,20 @@ import java.awt.event.*;
 
 
 
-public class Formulario extends JFrame {
+public class Screen extends JFrame {
 
     JFrame frame;
-    JRadioButton seleccion1,seleccion2,seleccion3,seleccion4;
-    ButtonGroup preguntas;
     JTable tabla1,tabla2,tabla3,tabla4,tabla5 = new JTable();
     JButton boton1,boton2,boton3,boton4,boton5,boton6;
     Requerimientos consultas =  new Requerimientos();
-    Integer score=0;
-    Integer i=0;
-    JLabel pregunta;
 
     
     
 
-public Formulario () throws SQLException{
+public Screen () throws SQLException{
 
 
-initFormulario();
+initScreen();
 
 
 
@@ -31,11 +26,11 @@ initFormulario();
 }
 
 
-private void initFormulario () throws SQLException{
+private void initScreen () throws SQLException{
 
 frame = new JFrame("MATEMATICA MENTE");
 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-frame.setSize(600, 400);
+frame.setSize(600, 700);
 frame.setResizable(false);
 
 
@@ -51,15 +46,8 @@ titulo.add(etiqueta);
 
 //CONSTRUIMOS EL OBJETO JPANEL PARA ALBERGAR LA BOTONERA
 JPanel Botonera = new JPanel();
-JPanel Botonera2 = new JPanel();
-JPanel Enunciado = new JPanel();
-
 //LE DECIMOS QUE ESE PANEL VA A TENER UN lAYOUT FLOWLAYOUT Y SUS COMPONENTES ESTARAN CENTRARDOS
 Botonera.setLayout(new BoxLayout(Botonera, BoxLayout.Y_AXIS));
-Botonera2.setLayout(new BoxLayout(Botonera2, BoxLayout.X_AXIS));
-Enunciado.setLayout(new BoxLayout(Enunciado, BoxLayout.Y_AXIS));
-Botonera2.setAlignmentX(Component.CENTER_ALIGNMENT);
-
 
 
 // CREO UNOS LABEL PARA DAR ESPACIOS ENTRE LOS BOTONES
@@ -68,12 +56,6 @@ JLabel espacio2 = new JLabel("          ");
 JLabel espacio3 = new JLabel("          ");
 JLabel espacio4 = new JLabel("          ");
 JLabel espacio5 = new JLabel("          ");
-JLabel espacio6 = new JLabel("          ");
-JLabel espacio7 = new JLabel("                                             ");
-JLabel espacio8 = new JLabel("          ");
-JLabel puntos = new JLabel(" PUNTOS   :"+ score);
-puntos.setFont(new Font("Arial",0, 25));
-
 
 
 
@@ -85,10 +67,6 @@ JButton boton3 = new JButton("NIVEL3");
 JButton boton4 = new JButton("NIVEL4");
 JButton boton5 = new JButton("NIVEL5");
 JButton boton6 = new JButton("   Salir  ");
-JButton boton7 = new JButton("Comprobar");
-
-//creamos las opciones
-
 
 
 //ADICIONAMOS BOTONES AL PANEL
@@ -103,19 +81,7 @@ Botonera.add(boton4);
 Botonera.add(espacio4);
 Botonera.add(boton5);
 Botonera.add(espacio5);
-Botonera2.add(espacio7);
-Botonera2.add(boton7);
-Botonera2.add(espacio6);
-Botonera2.add(boton6);
-Botonera2.add(espacio8);
-Botonera2.add(puntos);
-
-
-
-
-
-
-
+Botonera.add(boton6);
 
 
 // CREAMOS LAS TABLAS Y LAS CABECERAS PARA SER USADAS DESPÚES
@@ -141,7 +107,6 @@ tabla5 = new JTable(consultas.mostrar4(), nombres5);
 
 
 
-
 // CREAMOS EL JSCROLLPANE QUE ES EL QUE ME ALBERGA LAS TABLAS
 JScrollPane Panel = new JScrollPane();
 Panel.setAlignmentY(Component.CENTER_ALIGNMENT);
@@ -151,7 +116,6 @@ Panel.setAlignmentY(Component.CENTER_ALIGNMENT);
 //AGREGAMOS LOS PANELES AL PANEL BORDELAYOUT QUE SERÁ MI PRINCIPAL
 
 frame. getContentPane().add(BorderLayout.LINE_START,Botonera);
-frame. getContentPane().add(BorderLayout.SOUTH,Botonera2);
 frame. getContentPane().add(Panel, BorderLayout.CENTER);
 frame. getContentPane().add(BorderLayout.NORTH, titulo);
 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -222,56 +186,16 @@ ActionListener consulta5 = new ActionListener(){
     @Override
     public void actionPerformed(ActionEvent ae){
 
-        //Panel.add(tabla5);
-       //Panel.setViewportView(tabla5);
-
-       Panel.getRootPane().removeAll();
-       Panel.repaint();
-               
-    }
-};
-    boton5.addActionListener(consulta5);
-//MeI3.addActionListener(consulta2);
-
-String[][] answer=(consultas.mostrar());
-ActionListener comprobar = new ActionListener(){
-    @Override
-    public void actionPerformed(ActionEvent ae){
-
-        Panel.repaint();
-       
-        JLabel pregunta=new JLabel(answer[i][2]);
-        seleccion1=new JRadioButton(answer[i][3]);
-        seleccion2=new JRadioButton(answer[i][4]);
-        seleccion3=new JRadioButton(answer[i][5]);
-        seleccion4=new JRadioButton(answer[i][6]);
-        
-        
-        preguntas=new ButtonGroup();
-        
-        preguntas.add(seleccion1);
-        preguntas.add(seleccion2);
-        preguntas.add(seleccion3);
-        preguntas.add(seleccion4);
-        Enunciado.add(pregunta);
-        Enunciado.add(seleccion1);
-        Enunciado.add(seleccion2);
-        Enunciado.add(seleccion3);
-        Enunciado.add(seleccion4);
-        
-        Panel.add(Enunciado);
-        Panel.setViewportView(Enunciado);
-        i=i+1;
-    
-        
-
-     
+       Panel.add(tabla5);
+       Panel.setViewportView(tabla5);
        
               
     }
 };
 
-boton7.addActionListener(comprobar);
+boton5.addActionListener(consulta5);
+//MeI3.addActionListener(consulta2);
+
 
 
 
@@ -300,13 +224,8 @@ boton6.addActionListener(salir);
         }
         
 	}
-
-    private Integer puntosacumulados(){
-        score = score +2;
-        return puntosacumulados();
-
     }
-
-
-    }
-		
+		public class Screen {
+            
+        }
+        

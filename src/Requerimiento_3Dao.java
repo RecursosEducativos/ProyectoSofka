@@ -28,7 +28,7 @@ public class Requerimiento_3Dao {
                 requerimiento_3.setResc(resulset.getString("resc"));
                 requerimiento_3.setResi1(resulset.getString("resi1"));
                 requerimiento_3.setResi2(resulset.getString("resi2"));
-                requerimiento_3.setResi2(resulset.getString("resi2"));
+                requerimiento_3.setResi3(resulset.getString("resi3"));
                 respuesta.add(requerimiento_3);
 
             }

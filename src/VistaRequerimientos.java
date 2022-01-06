@@ -10,7 +10,7 @@ public class VistaRequerimientos {
             // Su código
             ArrayList<Requerimiento_1>lista1 = controlador.consultarRequerimiento1();
             for(Requerimiento_1 reque : lista1) {
-                System.out.printf("%d %d %s %s %s %s %n",
+                System.out.printf("%s %s %s %s %n",
                 reque.getID_Pregunta(),
                 reque.getNivel(),
                 reque.getEnunciado(),

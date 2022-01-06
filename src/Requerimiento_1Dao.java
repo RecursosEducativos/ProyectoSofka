@@ -14,7 +14,7 @@ public class Requerimiento_1Dao {
         Connection conexion = JDBCUtilities.getConnection();
 
         try{
-            String consulta ="select *from preguntas WHERE nivel == 1";
+            String consulta ="select *from preguntas";
             
             
             PreparedStatement statement = conexion.prepareStatement(consulta);
@@ -28,7 +28,7 @@ public class Requerimiento_1Dao {
                 requerimiento_1.setResc(resulset.getString("resc"));
                 requerimiento_1.setResi1(resulset.getString("resi1"));
                 requerimiento_1.setResi2(resulset.getString("resi2"));
-                requerimiento_1.setResi2(resulset.getString("resi3"));
+                requerimiento_1.setResi3(resulset.getString("resi3"));
                 respuesta.add(requerimiento_1);
 
             }
