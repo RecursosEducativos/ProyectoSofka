@@ -23,7 +23,7 @@ public class Formulario extends JFrame {
     JLabel pregunta;
     ArrayList<Integer> Azar1=new ArrayList<Integer>();
     String permiso="si";
-    String respuestaUsuario,preguntacorrecta;
+    String respuestaUsuario,preguntacorrecta,valor1,valor2,rta;
     
 public Formulario () throws SQLException{
 
@@ -184,10 +184,10 @@ ActionListener consulta1= new ActionListener(){
         }
        
         JLabel pregunta=new JLabel(answer0[i][(P)]+" )   "+answer0[i][2]);
-        seleccion1=new JRadioButton(answer0[i][Azar1.get(0)]);
-        seleccion2=new JRadioButton(answer0[i][Azar1.get(1)]);
-        seleccion3=new JRadioButton(answer0[i][Azar1.get(2)]);
-        seleccion4=new JRadioButton(answer0[i][Azar1.get(3)]);
+        seleccion1=new JRadioButton("A )  "+answer0[i][Azar1.get(0)]);
+        seleccion2=new JRadioButton("B )  "+answer0[i][Azar1.get(1)]);
+        seleccion3=new JRadioButton("C )  "+answer0[i][Azar1.get(2)]);
+        seleccion4=new JRadioButton("D )  "+answer0[i][Azar1.get(3)]);
         
         
         preguntas=new ButtonGroup();
@@ -250,10 +250,10 @@ String[][] answer1=(consultas.mostrar1());
             }
            
             JLabel pregunta=new JLabel(answer1[i][(P)]+" )   "+answer1[i][2]);
-            seleccion1=new JRadioButton(answer1[i][Azar1.get(0)]);
-            seleccion2=new JRadioButton(answer1[i][Azar1.get(1)]);
-            seleccion3=new JRadioButton(answer1[i][Azar1.get(2)]);
-            seleccion4=new JRadioButton(answer1[i][Azar1.get(3)]);
+            seleccion1=new JRadioButton("A )  "+answer1[i][Azar1.get(0)]);
+            seleccion2=new JRadioButton("B )  "+answer1[i][Azar1.get(1)]);
+            seleccion3=new JRadioButton("C )  "+answer1[i][Azar1.get(2)]);
+            seleccion4=new JRadioButton("D )  "+answer1[i][Azar1.get(3)]);
             
             
             preguntas=new ButtonGroup();
@@ -302,10 +302,10 @@ boton2.addActionListener(consulta2);
                 }
                
                 JLabel pregunta=new JLabel(answer2[i][(P)]+" )   "+answer2[i][2]);
-                seleccion1=new JRadioButton(answer2[i][Azar1.get(0)]);
-                seleccion2=new JRadioButton(answer2[i][Azar1.get(1)]);
-                seleccion3=new JRadioButton(answer2[i][Azar1.get(2)]);
-                seleccion4=new JRadioButton(answer2[i][Azar1.get(3)]);
+                seleccion1=new JRadioButton("A )  "+answer2[i][Azar1.get(0)]);
+                seleccion2=new JRadioButton("B )  "+answer2[i][Azar1.get(1)]);
+                seleccion3=new JRadioButton("C )  "+answer2[i][Azar1.get(2)]);
+                seleccion4=new JRadioButton("D )  "+answer2[i][Azar1.get(3)]);
                 
                 
                 preguntas=new ButtonGroup();
@@ -359,10 +359,10 @@ boton3.addActionListener(consulta3);
             }
            
             JLabel pregunta=new JLabel(answer3[i][(P)]+" )   "+answer3[i][2]);
-            seleccion1=new JRadioButton(answer3[i][Azar1.get(0)]);
-            seleccion2=new JRadioButton(answer3[i][Azar1.get(1)]);
-            seleccion3=new JRadioButton(answer3[i][Azar1.get(2)]);
-            seleccion4=new JRadioButton(answer3[i][Azar1.get(3)]);
+            seleccion1=new JRadioButton("A )  "+answer3[i][Azar1.get(0)]);
+            seleccion2=new JRadioButton("B )  "+answer3[i][Azar1.get(1)]);
+            seleccion3=new JRadioButton("C )  "+answer3[i][Azar1.get(2)]);
+            seleccion4=new JRadioButton("D )  "+answer3[i][Azar1.get(3)]);
             
             
             preguntas=new ButtonGroup();
@@ -411,10 +411,10 @@ ActionListener consulta5 = new ActionListener(){
         }
        
         JLabel pregunta=new JLabel(answer4[i][(P)]+" )   "+answer4[i][2]);
-        seleccion1=new JRadioButton(answer4[i][Azar1.get(0)]);
-        seleccion2=new JRadioButton(answer4[i][Azar1.get(1)]);
-        seleccion3=new JRadioButton(answer4[i][Azar1.get(2)]);
-        seleccion4=new JRadioButton(answer4[i][Azar1.get(3)]);
+        seleccion1=new JRadioButton("A )  "+answer4[i][Azar1.get(0)]);
+        seleccion2=new JRadioButton("B )  "+answer4[i][Azar1.get(1)]);
+        seleccion3=new JRadioButton("C )  "+answer4[i][Azar1.get(2)]);
+        seleccion4=new JRadioButton("D )  "+answer4[i][Azar1.get(3)]);
         
         
         preguntas=new ButtonGroup();
@@ -445,31 +445,66 @@ ActionListener comprobar = new ActionListener(){
     public void actionPerformed(ActionEvent ae){
         //POR MEDIO DEL EVENTO DEL ACTIONLISTENER DEL BOTON PODEMOS CAPTURAR LA OPCION ESCOGIDA
         //POR EL USUARIO
+        System.out.println(Azar1.indexOf(3));
+        System.out.println(Azar1);
         if(seleccion1.isSelected()){
             respuestaUsuario=seleccion1.getText().toString();
-            JOptionPane.showMessageDialog(null,"escogio "+ respuestaUsuario, "OK", JOptionPane.INFORMATION_MESSAGE);
+            if(Azar1.indexOf(3)==0){
+               rta="correcto";
+               JOptionPane.showMessageDialog(null,"Correcto su respuesta es :"+ respuestaUsuario, "OK", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else{
+                rta="incorrecto";
+             }
+      
             
          } else if(seleccion2.isSelected()){
                 respuestaUsuario=seleccion2.getText().toString();
-                JOptionPane.showMessageDialog(null,"escogio "+ respuestaUsuario, "OK", JOptionPane.INFORMATION_MESSAGE);
-               
+           
+                 
+                 if(Azar1.indexOf(3)==1){
+                    rta="correcto";
+                    JOptionPane.showMessageDialog(null,"Correcto su respuesta es :"+ respuestaUsuario, "OK", JOptionPane.INFORMATION_MESSAGE);
+                     }
+                     else{
+                        rta="incorrecto";
+                        
+                     }
             }
                 else if(seleccion3.isSelected()){
                     respuestaUsuario=seleccion3.getText().toString();
-                    JOptionPane.showMessageDialog(null,"escogio "+ respuestaUsuario, "OK", JOptionPane.INFORMATION_MESSAGE);
+          
+                     
+                     if(Azar1.indexOf(3)==2){
+                        rta="correcto";
+                        JOptionPane.showMessageDialog(null,"Correcto su respuesta es :"+ respuestaUsuario, "OK", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else{
+                        rta="incorrecto";
+                     }
                     
                 }
                 
                     else {
                         respuestaUsuario=seleccion4.getText().toString();
-                        JOptionPane.showMessageDialog(null,"escogio "+ respuestaUsuario, "OK", JOptionPane.INFORMATION_MESSAGE);
+                        
+                         
+                         if(Azar1.indexOf(3)==3){
+                            rta="correcto";
+                            JOptionPane.showMessageDialog(null,"Correcto su respuesta es :"+ respuestaUsuario, "OK", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                        else{
+                            rta="incorrecto";
+                         }
                         
                     }
                     
-                           
+                          
+    
 
+      
        
-        String preguntacorrecta=answer[i][3];
+        //String preguntacorrecta=answer[i][3];
         //CONDICION QUE COMPARA LA RESPUESTA DEL USUARIO CON LA CORRECTA GUARDADA
         //EN EL ARRAY TRAIDO DEL REQUERIMIENTO HECHO A LA BD
         //SI ES CORRECTA LA RESPUESTA PASARA A LA SIGUIETE PREGUNTA DE LO CONTRARIO
@@ -480,11 +515,16 @@ ActionListener comprobar = new ActionListener(){
             EL DESARROLLO DEL PROGRAMA PERO OBVIAMENTE ENTRA CUALQUIER RESPUESTA,
             if(respuestaUsuario.compareTo(preguntacorrecta)<0){   */
 
-            if(respuestaUsuario!=preguntacorrecta){
-                       
+           
+
+                
+
+        if(rta=="correcto"){
+                            
             
         boton7.setText("COMPROBAR");
         ArrayList<Integer> select=new ArrayList<Integer>();
+        ArrayList<Integer> select2=new ArrayList<Integer>();
         Azar1.clear();
         select.add(3);
         select.add(4);
@@ -495,6 +535,7 @@ ActionListener comprobar = new ActionListener(){
             var aleatorio = Math.floor(Math.random()*(select.size()));
             int seleccionAzar = select.get((int)aleatorio);
             z = select.indexOf(seleccionAzar);
+            select2.add((int)aleatorio);
             select.remove(z);
 
            /*  System.out.println("primer numero aleatorio:" + seleccionAzar);
@@ -512,15 +553,15 @@ ActionListener comprobar = new ActionListener(){
             
            
         }
-       
+     
         JLabel pregunta=new JLabel(answer[I][(P)]+" )   "+answer[I][2]);
-        seleccion1=new JRadioButton(answer[I][Azar1.get(0)]);
+        seleccion1=new JRadioButton("A )  "+answer[I][Azar1.get(0)]);
         
-        seleccion2=new JRadioButton(answer[I][Azar1.get(1)]);
+        seleccion2=new JRadioButton("B )  "+answer[I][Azar1.get(1)]);
         //String pregunta2=answer[i][5];
-        seleccion3=new JRadioButton(answer[I][Azar1.get(2)]);
+        seleccion3=new JRadioButton("C )  "+answer[I][Azar1.get(2)]);
         //String pregunta3=answer[i][6];
-        seleccion4=new JRadioButton(answer[I][Azar1.get(3)]);
+        seleccion4=new JRadioButton("D )  "+answer[I][Azar1.get(3)]);
         //String pregunta4=answer[i][7];
         
         
@@ -556,15 +597,15 @@ ActionListener comprobar = new ActionListener(){
   }
  
   I=I+1;
+  P=I-1;
         
     }
      
   else{
    
    JOptionPane.showMessageDialog(null,"Upps! Respuesta Equivocada.    Puntos acumulados "+ P, "OK", JOptionPane.INFORMATION_MESSAGE);
-  // System.exit(0);
-  System.out.println("PREGUNTA CORRECTA :" + preguntacorrecta);  
-  System.out.println("RESPUESTA USUARIO :" + respuestaUsuario);   
+   System.exit(0);
+    
   }
   
 }
