@@ -1,2 +1,4 @@
 # ProyectoSofka
- Juego de preguntas hecho en java para Sofka
+ Juego de preguntas hecho en java para Sofka.
+ 
+ Intrucciones:

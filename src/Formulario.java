@@ -1,6 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import java.awt.event.*;
 
 
@@ -15,11 +18,12 @@ public class Formulario extends JFrame {
     Requerimientos consultas =  new Requerimientos();
     Integer score=0;
     Integer i=0;
+    Integer I=0;
+    Integer P=0;
     JLabel pregunta;
-
+    ArrayList<Integer> Azar1=new ArrayList<Integer>();
+    String permiso="si";
     
-    
-
 public Formulario () throws SQLException{
 
 
@@ -29,6 +33,7 @@ initFormulario();
 
 
 }
+
 
 
 private void initFormulario () throws SQLException{
@@ -84,11 +89,13 @@ JButton boton2 = new JButton("NIVEL2");
 JButton boton3 = new JButton("NIVEL3");
 JButton boton4 = new JButton("NIVEL4");
 JButton boton5 = new JButton("NIVEL5");
-JButton boton6 = new JButton("   Salir  ");
-JButton boton7 = new JButton("Comprobar");
-
-//creamos las opciones
-
+JButton boton6 = new JButton("   SALIR  ");
+JButton boton7 = new JButton("EMPEZAR");
+boton1.setEnabled(true);
+//boton2.setEnabled(false);
+//boton3.setEnabled(false);
+//boton4.setEnabled(false);
+//boton5.setEnabled(false);
 
 
 //ADICIONAMOS BOTONES AL PANEL
@@ -110,39 +117,7 @@ Botonera2.add(boton6);
 Botonera2.add(espacio8);
 Botonera2.add(puntos);
 
-
-
-
-
-
-
-
-
-// CREAMOS LAS TABLAS Y LAS CABECERAS PARA SER USADAS DESPÚES
-
-//PRIMERA CONSULTA
-String[] nombres1 = {"ID_Pregunta", "Nivel", "Enunciado", "Resc", "Resi1","Resi2","Resi3"};
-tabla1 = new JTable(consultas.mostrar(), nombres1);
-
- // SEGUNDA CONSULTA
-String[] nombres2 = {"ID_Pregunta", "Nivel", "Enunciado", "Resc", "Resi1","Resi2","Resi3"};
-tabla2 = new JTable(consultas.mostrar1(), nombres2);
-
-//TERCERA CONSULTA
-String[] nombres3 = {"ID_Pregunta", "Nivel", "Enunciado", "Resc", "Resi1","Resi2","Resi3"};
-tabla3 = new JTable(consultas.mostrar2(), nombres3);
-//CUARTA CONSULTA
-String[] nombres4 = {"ID_Pregunta", "Nivel", "Enunciado", "Resc", "Resi1","Resi2","Resi3"};
-tabla4 = new JTable(consultas.mostrar3(), nombres4);
-
-//QUINTA CONSULTA
-String[] nombres5 = {"ID_Pregunta", "Nivel", "Enunciado", "Resc", "Resi1","Resi2","Resi3"};
-tabla5 = new JTable(consultas.mostrar4(), nombres5);
-
-
-
-
-// CREAMOS EL JSCROLLPANE QUE ES EL QUE ME ALBERGA LAS TABLAS
+// CREAMOS EL JSCROLLPANE QUE ES EL QUE ME ALBERGA LAS PREGUNTAS
 JScrollPane Panel = new JScrollPane();
 Panel.setAlignmentY(Component.CENTER_ALIGNMENT);
 
@@ -158,93 +133,55 @@ frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 frame. setVisible(true);
 frame.setLocationRelativeTo(null);
 
-// CREAMOS LOS EVENTOS ACTIONLISTENER Y LOS ADICIONAMOS AL BOTÓN Y A LOS MENUITEM
+// CREAMOS LOS EVENTOS ACTIONLISTENER Y LOS ADICIONAMOS AL BOTÓN 
 
- ActionListener consulta1 = new ActionListener(){
-     @Override
-     public void actionPerformed(ActionEvent ae){
-
-        Panel.add(tabla1);
-        Panel.setViewportView(tabla1);
-      
+ 
         
+String[][] answer0=(consultas.mostrar5());
+
+ActionListener consulta1= new ActionListener(){
+    @Override
+    public void actionPerformed(ActionEvent ae){
+           
+
+        boton7.setText("COMPROBAR");
+        ArrayList<Integer> select=new ArrayList<Integer>();
+        Azar1.clear();
+        select.add(3);
+        select.add(4);
+        select.add(5);
+        select.add(6);
+        int j,z;
+        for (j=0; j<4; j++) {
+            var aleatorio = Math.floor(Math.random()*(select.size()));
+            int seleccionAzar = select.get((int)aleatorio);
+            z = select.indexOf(seleccionAzar);
+            select.remove(z);
+
+           /*  System.out.println("primer numero aleatorio:" + seleccionAzar);
+            System.out.println("primer numero z:" + z);
+            System.out.println("elementos de select :"+ select); */
+            Azar1.add(seleccionAzar);
+
+            // var aleatorio = Math.floor(Math.random()*(seleccion.length));
+            // int seleccionAzar = seleccion[(int)aleatorio];
+            // trace(seleccion);
+          
+            
+           
+            //System.out.println(aleatorio);
+          
         
-     }
- };
-
-boton1.addActionListener(consulta1);
-//MeI2.addActionListener(consulta1);
-
-
-ActionListener consulta2 = new ActionListener(){
-    @Override
-    public void actionPerformed(ActionEvent ae){
-
-       Panel.add(tabla2);
-       Panel.setViewportView(tabla2);
+            // Sistem.out.println(seleccion);   
+            
+            System.out.println("longitud de Azar es: " + Azar1);
+        }
        
-              
-    }
-};
-
-boton2.addActionListener(consulta2);
-//MeI3.addActionListener(consulta2);
-
-ActionListener consulta3 = new ActionListener(){
-    @Override
-    public void actionPerformed(ActionEvent ae){
-
-       Panel.add(tabla3);
-       Panel.setViewportView(tabla3);
-       
-              
-    }
-};
-
-boton3.addActionListener(consulta3);
-//MeI3.addActionListener(consulta2);
-
-ActionListener consulta4 = new ActionListener(){
-    @Override
-    public void actionPerformed(ActionEvent ae){
-
-       Panel.add(tabla4);
-       Panel.setViewportView(tabla4);
-       
-              
-    }
-};
-
-boton4.addActionListener(consulta4);
-//MeI3.addActionListener(consulta2);
-
-ActionListener consulta5 = new ActionListener(){
-    @Override
-    public void actionPerformed(ActionEvent ae){
-
-        //Panel.add(tabla5);
-       //Panel.setViewportView(tabla5);
-
-       Panel.getRootPane().removeAll();
-       Panel.repaint();
-               
-    }
-};
-    boton5.addActionListener(consulta5);
-//MeI3.addActionListener(consulta2);
-
-String[][] answer=(consultas.mostrar());
-ActionListener comprobar = new ActionListener(){
-    @Override
-    public void actionPerformed(ActionEvent ae){
-
-        Panel.repaint();
-       
-        JLabel pregunta=new JLabel(answer[i][2]);
-        seleccion1=new JRadioButton(answer[i][3]);
-        seleccion2=new JRadioButton(answer[i][4]);
-        seleccion3=new JRadioButton(answer[i][5]);
-        seleccion4=new JRadioButton(answer[i][6]);
+        JLabel pregunta=new JLabel(answer0[i][(P)]+" )   "+answer0[i][2]);
+        seleccion1=new JRadioButton("A)   "+answer0[i][Azar1.get(0)]);
+        seleccion2=new JRadioButton("B)   "+answer0[i][Azar1.get(1)]);
+        seleccion3=new JRadioButton("C)   "+answer0[i][Azar1.get(2)]);
+        seleccion4=new JRadioButton("D)   "+answer0[i][Azar1.get(3)]);
         
         
         preguntas=new ButtonGroup();
@@ -261,27 +198,317 @@ ActionListener comprobar = new ActionListener(){
         
         Panel.add(Enunciado);
         Panel.setViewportView(Enunciado);
-        i=i+1;
-    
+        I=1;
+      
+      
         
+     }
+ };
 
-     
-       
+boton1.addActionListener(consulta1);
+String[][] answer1=(consultas.mostrar1());
+    ActionListener consulta2 = new ActionListener(){
+        @Override
+        public void actionPerformed(ActionEvent ae){
+            boton7.setText("COMPROBAR");
+            ArrayList<Integer> select=new ArrayList<Integer>();
+            Azar1.clear();
+            select.add(3);
+            select.add(4);
+            select.add(5);
+            select.add(6);
+            int j,z;
+            for (j=0; j<4; j++) {
+                var aleatorio = Math.floor(Math.random()*(select.size()));
+                int seleccionAzar = select.get((int)aleatorio);
+                z = select.indexOf(seleccionAzar);
+                select.remove(z);
+    
+               /*  System.out.println("primer numero aleatorio:" + seleccionAzar);
+                System.out.println("primer numero z:" + z);
+                System.out.println("elementos de select :"+ select); */
+                Azar1.add(seleccionAzar);
+    
+                // var aleatorio = Math.floor(Math.random()*(seleccion.length));
+                // int seleccionAzar = seleccion[(int)aleatorio];
+                // trace(seleccion);
               
+                
+               
+                //System.out.println(aleatorio);
+              
+            
+                // Sistem.out.println(seleccion);   
+                
+                System.out.println("longitud de Azar es: " + Azar1);
+            }
+           
+            JLabel pregunta=new JLabel(answer1[i][(P)]+" )   "+answer1[i][2]);
+            seleccion1=new JRadioButton("A)   "+answer1[i][Azar1.get(0)]);
+            seleccion2=new JRadioButton("B)   "+answer1[i][Azar1.get(1)]);
+            seleccion3=new JRadioButton("C)   "+answer1[i][Azar1.get(2)]);
+            seleccion4=new JRadioButton("D)   "+answer1[i][Azar1.get(3)]);
+            
+            
+            preguntas=new ButtonGroup();
+            
+            preguntas.add(seleccion1);
+            preguntas.add(seleccion2);
+            preguntas.add(seleccion3);
+            preguntas.add(seleccion4);
+            Enunciado.add(pregunta);
+            Enunciado.add(seleccion1);
+            Enunciado.add(seleccion2);
+            Enunciado.add(seleccion3);
+            Enunciado.add(seleccion4);
+            
+            Panel.add(Enunciado);
+            Panel.setViewportView(Enunciado);
+            //ASIGNO EL VALOR DE 22 PARA SEGUIR EN EL CONSECUTIVO DE LAS PREGUNTAS GLOBALES
+            I=6; 
+        }
+};
+
+boton2.addActionListener(consulta2);
+
+
+        String[][] answer2=(consultas.mostrar2());
+        ActionListener consulta3 = new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae){
+                boton7.setText("COMPROBAR");
+                ArrayList<Integer> select=new ArrayList<Integer>();
+                Azar1.clear();
+                select.add(3);
+                select.add(4);
+                select.add(5);
+                select.add(6);
+                int j,z;
+                for (j=0; j<4; j++) {
+                    var aleatorio = Math.floor(Math.random()*(select.size()));
+                    int seleccionAzar = select.get((int)aleatorio);
+                    z = select.indexOf(seleccionAzar);
+                    select.remove(z);
+        
+                    Azar1.add(seleccionAzar);
+        
+                    System.out.println("longitud de Azar es: " + Azar1);
+                }
+               
+                JLabel pregunta=new JLabel(answer2[i][(P)]+" )   "+answer2[i][2]);
+                seleccion1=new JRadioButton("A)   "+answer2[i][Azar1.get(0)]);
+                seleccion2=new JRadioButton("B)   "+answer2[i][Azar1.get(1)]);
+                seleccion3=new JRadioButton("C)   "+answer2[i][Azar1.get(2)]);
+                seleccion4=new JRadioButton("D)   "+answer2[i][Azar1.get(3)]);
+                
+                
+                preguntas=new ButtonGroup();
+                
+                preguntas.add(seleccion1);
+                preguntas.add(seleccion2);
+                preguntas.add(seleccion3);
+                preguntas.add(seleccion4);
+                Enunciado.add(pregunta);
+                Enunciado.add(seleccion1);
+                Enunciado.add(seleccion2);
+                Enunciado.add(seleccion3);
+                Enunciado.add(seleccion4);
+                
+                Panel.add(Enunciado);
+                Panel.setViewportView(Enunciado);
+                //ASIGNO EL VALOR DE 11 PARA SEGUIR EN EL CONSECUTIVO DE LAS PREGUNTAS GLOBALES
+                I=11; 
+            }
+ 
+};
+
+boton3.addActionListener(consulta3);
+
+
+
+
+    //AQUI SE PROBO LA FUNCION 
+    //rando();
+    String[][] answer3=(consultas.mostrar3());
+    ActionListener consulta4 = new ActionListener(){
+        @Override
+        public void actionPerformed(ActionEvent ae){
+            boton7.setText("COMPROBAR");
+            ArrayList<Integer> select=new ArrayList<Integer>();
+            Azar1.clear();
+            select.add(3);
+            select.add(4);
+            select.add(5);
+            select.add(6);
+            int j,z;
+            for (j=0; j<4; j++) {
+                var aleatorio = Math.floor(Math.random()*(select.size()));
+                int seleccionAzar = select.get((int)aleatorio);
+                z = select.indexOf(seleccionAzar);
+                select.remove(z);
+    
+                Azar1.add(seleccionAzar);
+    
+                System.out.println("longitud de Azar es: " + Azar1);
+            }
+           
+            JLabel pregunta=new JLabel(answer3[i][(P)]+" )   "+answer3[i][2]);
+            seleccion1=new JRadioButton("A)   "+answer3[i][Azar1.get(0)]);
+            seleccion2=new JRadioButton("B)   "+answer3[i][Azar1.get(1)]);
+            seleccion3=new JRadioButton("C)   "+answer3[i][Azar1.get(2)]);
+            seleccion4=new JRadioButton("D)   "+answer3[i][Azar1.get(3)]);
+            
+            
+            preguntas=new ButtonGroup();
+            
+            preguntas.add(seleccion1);
+            preguntas.add(seleccion2);
+            preguntas.add(seleccion3);
+            preguntas.add(seleccion4);
+            Enunciado.add(pregunta);
+            Enunciado.add(seleccion1);
+            Enunciado.add(seleccion2);
+            Enunciado.add(seleccion3);
+            Enunciado.add(seleccion4);
+            
+            Panel.add(Enunciado);
+            Panel.setViewportView(Enunciado);
+            //ASIGNO EL VALOR DE 16 PARA SEGUIR EN EL CONSECUTIVO DE LAS PREGUNTAS GLOBALES
+            I=16; 
+        }
+
+    
+};
+
+boton4.addActionListener(consulta4);
+//MeI3.addActionListener(consulta2);
+String[][] answer4=(consultas.mostrar4());
+ActionListener consulta5 = new ActionListener(){
+    @Override
+    public void actionPerformed(ActionEvent ae){
+        boton7.setText("COMPROBAR");
+        ArrayList<Integer> select=new ArrayList<Integer>();
+        Azar1.clear();
+        select.add(3);
+        select.add(4);
+        select.add(5);
+        select.add(6);
+        int j,z;
+        for (j=0; j<4; j++) {
+            var aleatorio = Math.floor(Math.random()*(select.size()));
+            int seleccionAzar = select.get((int)aleatorio);
+            z = select.indexOf(seleccionAzar);
+            select.remove(z);
+
+            Azar1.add(seleccionAzar);
+
+        }
+       
+        JLabel pregunta=new JLabel(answer4[i][(P)]+" )   "+answer4[i][2]);
+        seleccion1=new JRadioButton("A)   "+answer4[i][Azar1.get(0)]);
+        seleccion2=new JRadioButton("B)   "+answer4[i][Azar1.get(1)]);
+        seleccion3=new JRadioButton("C)   "+answer4[i][Azar1.get(2)]);
+        seleccion4=new JRadioButton("D)   "+answer4[i][Azar1.get(3)]);
+        
+        
+        preguntas=new ButtonGroup();
+        
+        preguntas.add(seleccion1);
+        preguntas.add(seleccion2);
+        preguntas.add(seleccion3);
+        preguntas.add(seleccion4);
+        Enunciado.add(pregunta);
+        Enunciado.add(seleccion1);
+        Enunciado.add(seleccion2);
+        Enunciado.add(seleccion3);
+        Enunciado.add(seleccion4);
+        
+        Panel.add(Enunciado);
+        Panel.setViewportView(Enunciado);
+        //ASIGNO EL VALOR DE 21 PARA SEGUIR EN EL CONSECUTIVO DE LAS PREGUNTAS GLOBALES
+        I=21; 
     }
+};
+    boton5.addActionListener(consulta5);
+//MeI3.addActionListener(consulta2);
+
+String[][] answer=(consultas.mostrar());
+
+ActionListener comprobar = new ActionListener(){
+    @Override
+    public void actionPerformed(ActionEvent ae){
+        if(permiso=="si") {      
+
+        boton7.setText("COMPROBAR");
+        ArrayList<Integer> select=new ArrayList<Integer>();
+        Azar1.clear();
+        select.add(3);
+        select.add(4);
+        select.add(5);
+        select.add(6);
+        int j,z;
+        for (j=0; j<4; j++) {
+            var aleatorio = Math.floor(Math.random()*(select.size()));
+            int seleccionAzar = select.get((int)aleatorio);
+            z = select.indexOf(seleccionAzar);
+            select.remove(z);
+
+           /*  System.out.println("primer numero aleatorio:" + seleccionAzar);
+            System.out.println("primer numero z:" + z);
+            System.out.println("elementos de select :"+ select); */
+            Azar1.add(seleccionAzar);
+
+            // var aleatorio = Math.floor(Math.random()*(seleccion.length));
+            // int seleccionAzar = seleccion[(int)aleatorio];
+            // trace(seleccion);
+          
+            //System.out.println(aleatorio);
+          
+            // Sistem.out.println(seleccion);   
+            
+            System.out.println("longitud de Azar es: " + Azar1);
+        }
+       
+        JLabel pregunta=new JLabel(answer[I][(P)]+" )   "+answer[I][2]);
+        seleccion1=new JRadioButton("A)   "+answer[I][Azar1.get(0)]);
+        seleccion2=new JRadioButton("B)   "+answer[I][Azar1.get(1)]);
+        seleccion3=new JRadioButton("C)   "+answer[I][Azar1.get(2)]);
+        seleccion4=new JRadioButton("D)   "+answer[I][Azar1.get(3)]);
+        
+        
+        preguntas=new ButtonGroup();
+        
+        preguntas.add(seleccion1);
+        preguntas.add(seleccion2);
+        preguntas.add(seleccion3);
+        preguntas.add(seleccion4);
+        Enunciado.add(pregunta);
+        Enunciado.add(seleccion1);
+        Enunciado.add(seleccion2);
+        Enunciado.add(seleccion3);
+        Enunciado.add(seleccion4);
+        
+        Panel.add(Enunciado);
+        Panel.setViewportView(Enunciado);
+        I=I+1;
+        puntos.setText("PUNTOS :"+ i);
+    }
+    else
+   System.out.println("es un no");
+}
+   
+
+   
 };
 
 boton7.addActionListener(comprobar);
-
-
-
 
 // EVENTO ACTIONLISTENER PARA SALIR 
 ActionListener salir = new ActionListener(){
     @Override
     public void actionPerformed(ActionEvent ae){
 
-        //CON ESTA LINEA DE CÓDIGO CERRAMOS LA APLICACIÓN
+        //CON ESTA LINEA DE CÓDIGO LLAMAMOS A LA FUNCIÓN Y CERRAMOS LA APLICACIÓN
       salir();
        
     }
@@ -295,18 +522,36 @@ boton6.addActionListener(salir);
 	private void salir(){
         int valor = JOptionPane.showConfirmDialog(this,"Quieres salir de la aplicación?","ADVERTENCIA",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
         		if (valor == JOptionPane.YES_OPTION){
-            JOptionPane.showMessageDialog(null,"Gracias", "SALIR", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Puntos acumulados "+ P, "SALIR", JOptionPane.INFORMATION_MESSAGE);
             System.exit(0);
+            
         }
         
 	}
 
-    private Integer puntosacumulados(){
-        score = score +2;
-        return puntosacumulados();
+    //FUNCIÓN PARA CREAR UN ARRAY DINÁMICO
+    private ArrayList<Integer>rando(){
 
-    }
+    
+        ArrayList<Integer> select=new ArrayList<Integer>();
+        Azar1.clear();
+        select.add(3);
+        select.add(4);
+        select.add(5);
+        select.add(6);
+        int j,z;
+        for (j=0; j<4; j++) {
+            var aleatorio = Math.floor(Math.random()*(select.size()));
+            int seleccionAzar = select.get((int)aleatorio);
+            z = select.indexOf(seleccionAzar);
+            select.remove(z);
 
+            Azar1.add(seleccionAzar);
 
-    }
+            System.out.println("longitud de Azar es: " + Azar1);
+        }
+        
+        return(Azar1);
 		
+    }
+}

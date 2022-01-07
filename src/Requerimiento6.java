@@ -6,16 +6,16 @@ import javax.swing.*;
 
 
 
-public class Requerimiento1 extends JFrame {
+public class Requerimiento6 extends JFrame {
 
-    public Requerimiento1() throws SQLException{
+    public Requerimiento6() throws SQLException{
       
             }
             
-    public String[][] mostrar() throws SQLException{
-        ArrayList<Requerimiento_1> lista = new ArrayList<Requerimiento_1>();
+    public String[][] mostrar5() throws SQLException{
+        ArrayList<Requerimiento_6> lista = new ArrayList<Requerimiento_6>();
         ElControladorDeRequerimientos controlador = new ElControladorDeRequerimientos();
-        lista = controlador.consultarRequerimiento1();
+        lista = controlador.consultarRequerimiento6();
         String matriz[][]= new String [lista.size()][7];
         for (int i = 0; i< lista.size(); i++){
             matriz[i][0] = String.valueOf(lista.get(i).getID_Pregunta());
@@ -29,8 +29,3 @@ public class Requerimiento1 extends JFrame {
         return matriz;
     }
 }
-
-
-
-    
-

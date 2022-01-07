@@ -8,6 +8,7 @@ public class ElControladorDeRequerimientos {
     private final Requerimiento_3Dao REQUERIMIENTO_3DAO;
     private final Requerimiento_4Dao REQUERIMIENTO_4DAO;
     private final Requerimiento_5Dao REQUERIMIENTO_5DAO;
+    private final Requerimiento_6Dao REQUERIMIENTO_6DAO;
 
     public ElControladorDeRequerimientos(){
         this.REQUERIMIENTO_1DAO= new Requerimiento_1Dao();
@@ -15,6 +16,7 @@ public class ElControladorDeRequerimientos {
         this.REQUERIMIENTO_3DAO= new Requerimiento_3Dao();
         this.REQUERIMIENTO_4DAO= new Requerimiento_4Dao();
         this.REQUERIMIENTO_5DAO= new Requerimiento_5Dao();
+        this.REQUERIMIENTO_6DAO= new Requerimiento_6Dao();
     }
     
         public ArrayList<Requerimiento_1> consultarRequerimiento1() throws SQLException {
@@ -44,6 +46,11 @@ public class ElControladorDeRequerimientos {
             // Su código}
            
             return this.REQUERIMIENTO_5DAO.requerimiento5();
+        } 
+        public ArrayList<Requerimiento_6> consultarRequerimiento6() throws SQLException {
+            // Su código}
+           
+            return this.REQUERIMIENTO_6DAO.requerimiento6();
         } 
 
 }

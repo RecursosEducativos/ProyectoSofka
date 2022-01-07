@@ -87,7 +87,7 @@ public class VistaRequerimientos {
             System.err.println("Ha ocurrido un error!"+e.getMessage());
         }
     }
-    public static void Requerimiento5(){
+    public static void requerimiento5(){
         
         try {
             // Su código
@@ -108,5 +108,25 @@ public class VistaRequerimientos {
         }
     }
 
+    public static void Requerimiento6(){
+        
+        try {
+            // Su código
+            ArrayList<Requerimiento_6>lista6 = controlador.consultarRequerimiento6();
+            for(Requerimiento_6 reque : lista6) {
+                System.out.printf("%d %d %s %s %s %s %n",
+                reque.getID_Pregunta(),
+                reque.getNivel(),
+                reque.getEnunciado(),
+                reque.getResc(),
+                reque.getResi1(),
+                reque.getResi2(),
+                reque.getResi3());
+
+            }
+        } catch (Exception e) {
+            System.err.println("Ha ocurrido un error!"+e.getMessage());
+        }
+    }
     
 }
