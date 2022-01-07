@@ -2,8 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
-
 import java.awt.event.*;
 
 
@@ -22,7 +20,6 @@ public class Formulario extends JFrame {
     Integer P=0;
     JLabel pregunta;
     ArrayList<Integer> Azar1=new ArrayList<Integer>();
-    String permiso="si";
     String respuestaUsuario,preguntacorrecta,valor1,valor2,rta;
     
 public Formulario () throws SQLException{
@@ -180,10 +177,10 @@ ActionListener consulta1= new ActionListener(){
         
             // Sistem.out.println(seleccion);   
             
-            System.out.println("longitud de Azar es: " + Azar1);
+            //System.out.println("longitud de Azar es: " + Azar1);
         }
        
-        JLabel pregunta=new JLabel(answer0[i][(P)]+" )   "+answer0[i][2]);
+        JLabel pregunta=new JLabel(answer0[i][0]+" )   "+answer0[i][2]);
         seleccion1=new JRadioButton("A )  "+answer0[i][Azar1.get(0)]);
         seleccion2=new JRadioButton("B )  "+answer0[i][Azar1.get(1)]);
         seleccion3=new JRadioButton("C )  "+answer0[i][Azar1.get(2)]);
@@ -246,10 +243,10 @@ String[][] answer1=(consultas.mostrar1());
             
                 // Sistem.out.println(seleccion);   
                 
-                System.out.println("longitud de Azar es: " + Azar1);
+                //System.out.println("longitud de Azar es: " + Azar1);
             }
            
-            JLabel pregunta=new JLabel(answer1[i][(P)]+" )   "+answer1[i][2]);
+            JLabel pregunta=new JLabel(answer1[i][0]+" )   "+answer1[i][2]);
             seleccion1=new JRadioButton("A )  "+answer1[i][Azar1.get(0)]);
             seleccion2=new JRadioButton("B )  "+answer1[i][Azar1.get(1)]);
             seleccion3=new JRadioButton("C )  "+answer1[i][Azar1.get(2)]);
@@ -298,10 +295,10 @@ boton2.addActionListener(consulta2);
         
                     Azar1.add(seleccionAzar);
         
-                    System.out.println("longitud de Azar es: " + Azar1);
+                    //System.out.println("longitud de Azar es: " + Azar1);
                 }
                
-                JLabel pregunta=new JLabel(answer2[i][(P)]+" )   "+answer2[i][2]);
+                JLabel pregunta=new JLabel(answer2[i][0]+" )   "+answer2[i][2]);
                 seleccion1=new JRadioButton("A )  "+answer2[i][Azar1.get(0)]);
                 seleccion2=new JRadioButton("B )  "+answer2[i][Azar1.get(1)]);
                 seleccion3=new JRadioButton("C )  "+answer2[i][Azar1.get(2)]);
@@ -355,10 +352,10 @@ boton3.addActionListener(consulta3);
     
                 Azar1.add(seleccionAzar);
     
-                System.out.println("longitud de Azar es: " + Azar1);
+                //System.out.println("longitud de Azar es: " + Azar1);
             }
            
-            JLabel pregunta=new JLabel(answer3[i][(P)]+" )   "+answer3[i][2]);
+            JLabel pregunta=new JLabel(answer3[i][0]+" )   "+answer3[i][2]);
             seleccion1=new JRadioButton("A )  "+answer3[i][Azar1.get(0)]);
             seleccion2=new JRadioButton("B )  "+answer3[i][Azar1.get(1)]);
             seleccion3=new JRadioButton("C )  "+answer3[i][Azar1.get(2)]);
@@ -410,7 +407,7 @@ ActionListener consulta5 = new ActionListener(){
 
         }
        
-        JLabel pregunta=new JLabel(answer4[i][(P)]+" )   "+answer4[i][2]);
+        JLabel pregunta=new JLabel(answer4[i][0]+" )   "+answer4[i][2]);
         seleccion1=new JRadioButton("A )  "+answer4[i][Azar1.get(0)]);
         seleccion2=new JRadioButton("B )  "+answer4[i][Azar1.get(1)]);
         seleccion3=new JRadioButton("C )  "+answer4[i][Azar1.get(2)]);
@@ -436,7 +433,7 @@ ActionListener consulta5 = new ActionListener(){
     }
 };
     boton5.addActionListener(consulta5);
-//MeI3.addActionListener(consulta2);
+
 
 String[][] answer=(consultas.mostrar());
 
@@ -517,9 +514,8 @@ ActionListener comprobar = new ActionListener(){
 
            
 
-                
-
-        if(rta=="correcto"){
+              
+            if(rta=="correcto"){
                             
             
         boton7.setText("COMPROBAR");
@@ -554,7 +550,7 @@ ActionListener comprobar = new ActionListener(){
            
         }
      
-        JLabel pregunta=new JLabel(answer[I][(P)]+" )   "+answer[I][2]);
+        JLabel pregunta=new JLabel(answer[I][(0)]+" )   "+answer[I][2]);
         seleccion1=new JRadioButton("A )  "+answer[I][Azar1.get(0)]);
         
         seleccion2=new JRadioButton("B )  "+answer[I][Azar1.get(1)]);
@@ -579,8 +575,10 @@ ActionListener comprobar = new ActionListener(){
         
         Panel.add(Enunciado);
         Panel.setViewportView(Enunciado);
-        
-        puntos.setText("PUNTOS :"+ I);
+        P=P+1;
+        puntos.setText("PUNTOS :"+ P);
+        ;
+        //System.out.println(P);
         
 //CONDICIONAL PARA HABILITAR NIVELES
   if(I>5){
@@ -597,7 +595,8 @@ ActionListener comprobar = new ActionListener(){
   }
  
   I=I+1;
-  P=I-1;
+ 
+  
         
     }
      
@@ -633,7 +632,7 @@ boton6.addActionListener(salir);
 
 
 	private void salir(){
-        P=I-1;
+       
         int valor = JOptionPane.showConfirmDialog(this,"Quieres salir de la aplicación?","ADVERTENCIA",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
         		if (valor == JOptionPane.YES_OPTION){
             JOptionPane.showMessageDialog(null,"Puntos acumulados "+ P, "SALIR", JOptionPane.INFORMATION_MESSAGE);
@@ -644,7 +643,7 @@ boton6.addActionListener(salir);
 	}
 
     //FUNCIÓN PARA CREAR UN ARRAY DINÁMICO
-    private ArrayList<Integer>rando(){
+   /*  private ArrayList<Integer>rando(){
 
     
         ArrayList<Integer> select=new ArrayList<Integer>();
@@ -667,7 +666,7 @@ boton6.addActionListener(salir);
         
         return(Azar1);
 		
-    }
+    } */
 
 //funcio evento de escoger respuesta
     /* private void comprobar(){
