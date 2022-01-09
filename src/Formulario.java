@@ -442,6 +442,10 @@ ActionListener comprobar = new ActionListener(){
     public void actionPerformed(ActionEvent ae){
         //POR MEDIO DEL EVENTO DEL ACTIONLISTENER DEL BOTON PODEMOS CAPTURAR LA OPCION ESCOGIDA
         //POR EL USUARIO
+        seleccion1.setEnabled(false);
+        seleccion2.setEnabled(false);
+        seleccion3.setEnabled(false);
+        seleccion4.setEnabled(false);
         System.out.println(Azar1.indexOf(3));
         System.out.println(Azar1);
         if(seleccion1.isSelected()){
