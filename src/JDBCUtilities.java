@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 public class JDBCUtilities {
     
-    private static final String DATABASE_LOCATION = "d:\\preguntas.db";
+    private static final String DATABASE_LOCATION = "./src/preguntas.db";
     //"Conexión a la BD que se construyó en SQlite y esta ubicada en la partición D:/;
 
     public static Connection getConnection() throws SQLException {

@@ -442,6 +442,7 @@ ActionListener comprobar = new ActionListener(){
     public void actionPerformed(ActionEvent ae){
         //POR MEDIO DEL EVENTO DEL ACTIONLISTENER DEL BOTON PODEMOS CAPTURAR LA OPCION ESCOGIDA
         //POR EL USUARIO
+        
         seleccion1.setEnabled(false);
         seleccion2.setEnabled(false);
         seleccion3.setEnabled(false);
@@ -520,7 +521,11 @@ ActionListener comprobar = new ActionListener(){
 
               
             if(rta=="correcto"){
-                            
+        //CONDICION QUE PREGUNTA SI TIENE EL PUNTAGE MÁXIMO PARA FINALIZAR EL PROGRAMA
+                if(I==25){
+                    JOptionPane.showMessageDialog(null,"Felicitaciones! Superastes a MATEMATICA MENTE.", "OK", JOptionPane.INFORMATION_MESSAGE);
+                   System.exit(0);
+                  }                    
             
         boton7.setText("COMPROBAR");
         ArrayList<Integer> select=new ArrayList<Integer>();
@@ -585,18 +590,19 @@ ActionListener comprobar = new ActionListener(){
         //System.out.println(P);
         
 //CONDICIONAL PARA HABILITAR NIVELES
-  if(I>5){
+  if(I==5){
     boton2.setEnabled(true);
   }
-  else if(I>10){
+  else if(I==10){
     boton3.setEnabled(true);
   }
-  else if(I>15){
+  else if(I==15){
     boton4.setEnabled(true);
   }
-  else if(I>21){
-    boton3.setEnabled(true);
+  else if(I==20){
+    boton5.setEnabled(true);
   }
+  
  
   I=I+1;
  
@@ -610,6 +616,7 @@ ActionListener comprobar = new ActionListener(){
    System.exit(0);
     
   }
+ 
   
 }
    
